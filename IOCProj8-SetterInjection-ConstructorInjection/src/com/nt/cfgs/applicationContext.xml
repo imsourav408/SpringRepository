@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- configure spring bean -->
+	<bean class="com.nt.comp.Student" id="stud">
+		<!-- <constructor-arg name="sno" value="1001"/>
+		<constructor-arg name="sname" value="Sourav"/>
+		<constructor-arg name="sadd" value="hyd"/>
+		<constructor-arg name="avg" value="79.83"/> -->
+		
+		<property name="sname" value="Raja"/>
+		<property name="sno" value="101"/>
+	</bean>
+
+</beans>
