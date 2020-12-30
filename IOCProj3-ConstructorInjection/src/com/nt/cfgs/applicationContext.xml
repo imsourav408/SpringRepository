@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+        <!-- Dependent spring bean configuration -->
+        <bean name="dt" class="java.util.Date"/>
+        
+        <bean name="dt1" class="java.util.Date">
+        	<property name="date" value="04"/>
+        	<!-- or we can write like below two properties-->
+        	<property name="month">
+        		<value>10</value>
+        	</property>
+        	<property name="year">
+        		<value>110</value>
+        	</property>
+        </bean>
+        
+        <!-- Target spring bean configuration -->
+        <bean name="wmg" class="com.nt.beans.WishMessageGenerator">
+       		<!-- This is only for testing of setter injection overrides the values of constructor injection -->
+        	<property name="date">
+        		<ref bean="dt1"/>
+        	</property>
+        	<constructor-arg name="date" ref="dt"/>
+        </bean>
+</beans>
