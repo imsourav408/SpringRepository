@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- configure all dependent classes as spring bean -->
+	<bean class="com.nt.comp.DTDC" id="dtdc"/>
+	<bean class="com.nt.comp.BlueDart" id="bdart"/>
+	<bean class="com.nt.comp.FirstFlight" id="fflight"/>
+	
+	<!-- configure target class -->
+	<bean class="com.nt.comp.Flipkart" id="fpkt">
+		<!--<property name="courier" ref="bdart"/>-->
+		<!-- enable constructor injection -->
+		<constructor-arg name="courier" ref="dtdc"/>
+	</bean>
+</beans>
