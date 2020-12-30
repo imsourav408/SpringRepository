@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- spring beans configurations -->
+	<bean class="com.nt.beans.Marks" id="mk">
+		<constructor-arg name="m1" value="65.83"/>
+		<constructor-arg index="1" value="77.23"/>
+		<constructor-arg value="85.98"/>
+	</bean>
+	
+	<bean class="com.nt.beans.Student" id="stud">
+		<constructor-arg name="sno" value="101"/>
+		<constructor-arg name="sname" value="Sourav"/>
+		<constructor-arg name="sadd" value="hyd"/>
+		<constructor-arg name="total" value="408"/>
+	</bean>
+	
+	<bean class="com.nt.beans.Employee" id="emp">
+		<constructor-arg type="java.lang.String" value="Raja"/>
+		<constructor-arg type="int" value="102"/>
+		<constructor-arg type="float" value="500000.23"/>
+	</bean>
+</beans>
