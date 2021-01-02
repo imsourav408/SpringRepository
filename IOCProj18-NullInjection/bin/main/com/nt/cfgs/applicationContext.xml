@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- configure dependent classes -->
+	<bean class="java.util.Date" id="dob">
+		<property name="date" value="14"/>
+		<property name="year" value="98"/>
+		<property name="month" value="2"/>
+	</bean>
+	
+	<bean class="java.util.Date" id="doj">
+		<property name="date" value="10"/>
+		<property name="month" value="11"/>
+		<property name="year" value="120"/>
+	</bean>
+	
+	<bean class="java.util.Date" id="dom">
+		<property name="date" value="16"/>
+		<property name="month" value="11"/>
+		<property name="year" value="129"/>
+	</bean>
+	
+	<!-- configure target class -->
+	<bean class="com.nt.comp.PersonsInfo" id="sourav">
+		<constructor-arg name="acno" value="123542176"/>
+		<constructor-arg name="pname" value="Sourav Kumar Nayak"/>
+		<constructor-arg name="dob" ref="dob"/>
+		<constructor-arg name="doj" ref="doj"/>
+		<constructor-arg name="dom" ref="dom"/>
+	</bean>
+	
+	<bean class="com.nt.comp.PersonsInfo" id="shruti">
+		<constructor-arg name="acno" value="123542177"/>
+		<constructor-arg name="pname" value="Shrutirekha Senapati"/>
+		<constructor-arg><null/></constructor-arg>
+		<constructor-arg><null/></constructor-arg>
+		<constructor-arg><null/></constructor-arg>
+	</bean>
+</beans>
