@@ -1,0 +1,8 @@
+Table: corona_patient_registration
+Columns:
+pid int(11) AI PK 
+pname varchar(25) 
+padd varchar(25) 
+fees float 
+daycount int(11) 
+totalamt float
