@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- configure parent abstract bean class -->
+	<bean class="com.nt.comp.Car" id="baseCar" abstract="true">
+		<constructor-arg name="company" value="hyundai"/>
+		<constructor-arg name="type" value="hatchback"/>
+		<constructor-arg name="engineCC" value="1200"/>
+		<!-- <constructor-arg name="colour"><null/></constructor-arg>
+		<constructor-arg name="engNo"><null/></constructor-arg>
+		<constructor-arg name="fuelType"><null/></constructor-arg>
+		<constructor-arg name="model"><null/></constructor-arg>
+		<constructor-arg name="owner"><null/></constructor-arg>
+		<constructor-arg name="regNo"><null/></constructor-arg> -->
+	</bean>
+	
+	<!-- configure child bean classes-->
+	<bean class="com.nt.comp.Car" id="rajaCar" parent="baseCar">
+		<constructor-arg name="colour" value="blue"/>
+		<constructor-arg name="engNo" value="154efr534w"/>
+		<constructor-arg name="fuelType" value="petrol"/>
+		<constructor-arg name="model" value="creta"/>
+		<constructor-arg name="owner" value="Sourav kumar Nayak"/>
+		<constructor-arg name="regNo" value="736g4r4e"/>
+	</bean>
+	
+	<bean class="com.nt.comp.Car" id="bantyCar" parent="baseCar">
+		<constructor-arg name="colour" value="gray"/>
+		<constructor-arg name="engNo" value="737h5r43"/>
+		<constructor-arg name="fuelType" value="diesel"/>
+		<constructor-arg name="model" value="i20 Active"/>
+		<constructor-arg name="owner" value="Hritik Nayak"/>
+		<constructor-arg name="regNo" value="8393bb363e"/>
+	</bean>
+</beans>
