@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Configure dependent spring bean -->
+	<bean class="java.util.Date" id="sysdate"/>
+	<bean class="java.util.Date" id="dobdate">
+		<property name="date" value="14"/>
+		<property name="month" value="02"/>
+		<property name="year" value="98"/>
+	</bean>
+	
+	<!-- Array injection -->
+	<bean class="com.nt.beans.MarksInfo" id="mi">
+		<property name="marks">
+			<array>
+				<value>98.02</value>
+				<value>100</value>
+				<value>99.22</value>
+				<value>97.54</value>
+			</array>
+		</property>
+		<property name="dates">
+			<array>
+				<ref bean="sysdate"/>
+				<ref bean="dobdate"/>
+			</array>
+		</property>
+	</bean>
+	
+	<!-- List injection -->
+	<bean class="com.nt.beans.College" id="clg">
+		<property name="studNames">
+			<list>
+				<value>Sourav</value>
+				<value>Hritik</value>
+			</list>
+		</property>
+		<property name="dateList">
+			<list>
+				<ref bean="sysdate"/>
+				<ref bean="dobdate"/>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Set injection -->
+	<bean class="com.nt.beans.ContactInfo" id="cinfo">
+		<constructor-arg name="phoneNumbers">
+			<set>
+				<value>9437264763</value>
+				<value>9861360231</value>
+			</set>
+		</constructor-arg>
+		<constructor-arg name="dates">
+			<set>
+				<ref bean="sysdate"/>
+				<ref bean="dobdate"/>
+			</set>
+		</constructor-arg>
+	</bean>
+	
+	<!-- Map injection-->
+	<bean class="com.nt.beans.UniversityInfo" id="uinfo">
+		<property name="facultyDetails">
+			<map key-type="java.lang.Integer" value-type="java.lang.String">
+				<entry>
+					<key><value>1001</value></key>
+					<value>Rajesh</value>
+				</entry>
+				<entry key="1002" value="Suresh"/>
+			</map>
+		</property>
+		<property name="datesInfo">
+			<map key-type="java.lang.String" value-type="java.util.Date">
+				<entry>
+					<key><value>joining Date</value></key>
+					<ref bean="sysdate"/>
+				</entry>
+				<entry key="dob" value-ref="dobdate"/>
+			</map>
+		</property>
+	</bean>
+	
+	<!-- Properties Injection -->
+	<bean class="com.nt.beans.FruitsInfo" id="fruit">
+		<property name="props">
+			<props>
+				<prop key="Banana">Yellow</prop>
+				<prop key="Apple">Red</prop>
+				<prop key="Grapes">Black</prop>
+			</props>
+		</property>
+	</bean>
+
+</beans>
