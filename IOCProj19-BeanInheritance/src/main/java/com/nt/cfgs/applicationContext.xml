@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+	 
+	<!-- configure bean classes without using bean inheritance -->
+	<!--
+	<bean class="com.nt.comp.Car" id="rajaCar">
+		<property name="company" value="Suzuki"/>
+		<property name="type" value="hatchback"/>
+		<property name="model" value="swift"/>
+		<property name="colour" value="red"/>
+		<property name="engNo" value="1265ms6543"/>
+		<property name="regNo" value="1096256mr12"/>
+		<property name="engineCC" value="1200"/>
+		<property name="fuelType" value="diesel"/>
+		<property name="owner" value="Raja Nayak"/>
+	</bean>
+	
+	<bean class="com.nt.comp.Car" id="bantyCar">
+		<property name="company" value="Suzuki"/>
+		<property name="type" value="hatchback"/>
+		<property name="model" value="baleno"/>
+		<property name="colour" value="velvet"/>
+		<property name="engNo" value="1225ms6553"/>
+		<property name="regNo" value="1096et56m12"/>
+		<property name="engineCC" value="1200"/>
+		<property name="fuelType" value="petrol"/>
+		<property name="owner" value="Hritik Nayak"/>
+	</bean>
+	 -->
+	 
+	<!-- configure bean classes using bean inheritance approach 1-->
+	<!-- <bean class="com.nt.comp.Car" id="rajaCar">
+		<property name="company" value="Suzuki"/>
+		<property name="type" value="hatchback"/>
+		<property name="model" value="swift"/>
+		<property name="colour" value="red"/>
+		<property name="engNo" value="1265ms6543"/>
+		<property name="regNo" value="1096256mr12"/>
+		<property name="engineCC" value="1200"/>
+		<property name="fuelType" value="diesel"/>
+		<property name="owner" value="Raja Nayak"/>
+	</bean>
+	
+	<bean class="com.nt.comp.Car" id="bantyCar" parent="rajaCar">
+		<property name="model" value="baleno"/>
+		<property name="colour" value="velvet"/>
+		<property name="engNo" value="1225ms6553"/>
+		<property name="regNo" value="1096et56m12"/>
+		<property name="fuelType" value="petrol"/>
+		<property name="owner" value="Hritik Nayak"/>
+	</bean> -->
+	
+	<!-- configure bean classes using bean inheritance improved approach(recommended)-->
+	<bean class="com.nt.comp.Car" id="baseCar" abstract="true">
+		<property name="company" value="Suzuki"/>
+		<property name="type" value="hatchback"/>
+		<property name="engineCC" value="1200"/>
+	</bean>
+	
+	<bean class="com.nt.comp.Car" id="rajaCar" parent="baseCar">
+		<property name="model" value="swift"/>
+		<property name="colour" value="red"/>
+		<property name="engNo" value="1265ms6543"/>
+		<property name="regNo" value="1096256mr12"/>
+		<property name="fuelType" value="diesel"/>
+		<property name="owner" value="Raja Nayak"/>
+	</bean>
+	
+	<bean class="com.nt.comp.Car" id="bantyCar" parent="baseCar">
+		<property name="model" value="baleno"/>
+		<property name="colour" value="velvet"/>
+		<property name="engNo" value="1225ms6553"/>
+		<property name="regNo" value="1096et56m12"/>
+		<property name="fuelType" value="petrol"/>
+		<property name="owner" value="Hritik Nayak"/>
+	</bean>
+</beans>
