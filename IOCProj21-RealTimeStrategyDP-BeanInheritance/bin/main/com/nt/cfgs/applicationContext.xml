@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- configure dependent class DataSource-->
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="drds">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="scott"/>
+		<property name="password" value="tiger"/>
+	</bean>
+	
+	<!-- configure dependent class SingletonDataSource-->
+	<bean class="org.springframework.jdbc.datasource.SingleConnectionDataSource" id="scdrds" parent="drds"/>
+	
+	<!-- configure dependent class DAO -->
+	<bean class="com.nt.dao.StudentDAOImpl" id="stdao">
+		<!-- <constructor-arg name="ds" ref="drds"/> -->
+		<constructor-arg name="ds" ref="scdrds"/>
+	</bean>
+	
+	<!-- configure dependent class Service -->
+	<bean class="com.nt.service.StudentRegistrationServiceImpl" id="service">
+		<constructor-arg name="dao" ref="stdao"/>
+	</bean>
+	
+	<!-- configure target class controller -->
+	<bean class="com.nt.controller.MainController" id="controller">
+		<constructor-arg name="service" ref="service"/>
+	</bean>
+
+</beans>
