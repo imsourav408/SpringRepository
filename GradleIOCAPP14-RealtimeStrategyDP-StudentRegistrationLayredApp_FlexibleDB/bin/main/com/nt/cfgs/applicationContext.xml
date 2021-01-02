@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- configure dependent class DataSource for oracle-->
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="oraDrds">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="scott"/>
+		<property name="password" value="tiger"/>
+	</bean>
+	
+	<!-- configure dependent class DataSource for MySQL-->
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="mysqlDrds">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql:///sourav"/>
+		<property name="username" value="root"/>
+		<property name="password" value="root"/>
+	</bean>
+	
+	<!-- configure bean class DAO for Oracle -->
+	<bean class="com.nt.dao.StudentOrclDAOimpl" id="orclDAO">
+		<constructor-arg name="ds" ref="oraDrds"/>
+	</bean>
+	
+	<!-- configure bean class DAO for mySQL -->
+	<bean class="com.nt.dao.StudentMySQLDAOImpl" id="mysqlDAO">
+		<constructor-arg name="ds" ref="mysqlDrds"/>
+	</bean>
+	
+	<!-- configure bean class service -->
+	<bean class="com.nt.service.StudentRegistrationServiceImpl" id="service">
+		<!-- <constructor-arg name="dao" ref="mysqlDAO"/> -->
+		<constructor-arg name="dao" ref="orclDAO"/>
+	</bean>
+	
+	<!-- configure dependent bean controller class -->
+	<bean class="com.nt.controller.MainController" id="controller">
+		<constructor-arg name="service" ref="service"/>
+	</bean>
+
+</beans>
