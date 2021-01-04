@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-merge="true">
+	
+	<!-- configure parent bean class -->
+	<bean class="com.nt.beans.EnggCourse" id="baseCourse" abstract="true">
+		<property name="subjects">
+			<set>
+				<value>Math1</value>
+				<value>Communication Skills English</value>
+				<value>C</value>
+				<value>Thermodynamics</value>
+				<value>BEE</value>
+			</set>
+		</property>
+	</bean>
+	
+	<!-- Configure Child Bean Classes -->
+	<bean class="com.nt.beans.EnggCourse" id="eee" parent="baseCourse">
+		<property name="subjects">
+			<set merge="true">
+				<value>BE</value>
+				<value>DEC</value>
+				<value>NT</value>
+				<value>AEC</value>
+			</set>
+		</property>
+	</bean>
+	
+	<bean class="com.nt.beans.EnggCourse" id="mech" parent="baseCourse">
+		<property name="subjects">
+			<set merge="default">
+				<value>FMHM</value>
+				<value>ETD</value>
+				<value>MOS</value>
+				<value>IPME</value>
+			</set>
+		</property>
+	</bean>
+	
+</beans>
