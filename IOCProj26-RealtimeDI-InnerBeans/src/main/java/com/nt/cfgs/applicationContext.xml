@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+	<!-- configure dependent class DataSource for oracle-->
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="oraDrds">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="scott"/>
+		<property name="password" value="tiger"/>
+	</bean>
+	
+	<!-- configure bean class DAO for Oracle -->
+	<bean class="com.nt.dao.StudentOrclDAOimpl" id="orclDAO">
+		<constructor-arg name="ds" ref="oraDrds"/>
+	</bean>
+	
+	<!-- configure dependent bean controller class -->
+	<bean class="com.nt.controller.MainController" id="controller">
+		<constructor-arg>
+			<bean class="com.nt.service.StudentRegistrationServiceImpl">
+				<constructor-arg name="dao" ref="orclDAO"/>
+			</bean>
+		</constructor-arg>
+	</bean>
+</beans>
