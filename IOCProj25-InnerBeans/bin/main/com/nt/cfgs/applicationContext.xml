@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+	
+	<!-- configure target bean class -->
+	<bean id="kohli" class="com.nt.beans.ProffessionalCrickter">
+		<constructor-arg name="name" value="Virat Kohli"/>
+		<constructor-arg>
+			<bean id="vbat" class="com.nt.beans.Bat"/>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="dhoni" class="com.nt.beans.ProffessionalCrickter">
+		<constructor-arg name="name" value="Mahendra Singh Dhoni"/>
+		<constructor-arg>
+			<bean class="com.nt.beans.Bat"/>
+		</constructor-arg>
+	</bean>
+</beans>
