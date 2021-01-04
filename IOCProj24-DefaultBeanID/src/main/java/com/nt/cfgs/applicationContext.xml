@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+	
+	<!-- configure spring bean class -->
+	<bean class="com.nt.comp.PersonInfo">
+		<property name="pname" value="Sourav"/>
+		<property name="age" value="21"/>
+		<property name="adharNo" value="625145516152"/>
+		<property name="padd" value="HYD"/>
+	</bean>
+	
+	<bean class="com.nt.comp.PersonInfo">
+		<property name="pname" value="Banty"/>
+		<property name="age" value="20"/>
+		<property name="adharNo" value="29872821982"/>
+		<property name="padd" value="BLS"/>
+	</bean>
+	
+	<bean class="com.nt.comp.PersonInfo">
+		<property name="pname" value="Krishna"/>
+		<property name="age" value="16"/>
+		<property name="adharNo" value="52562272636"/>
+		<property name="padd" value="BLS"/>
+	</bean>
+
+</beans>
+ 
