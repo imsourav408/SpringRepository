@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+	<!-- static factory bean method instantiation giving it's own class object -->
+	<bean id="c1" class="java.lang.Class" factory-method="forName">
+		<constructor-arg value="java.util.Date"/>
+	</bean>
+	
+	<!-- static factory method bean instantiation giving it's related sub class object -->
+	<bean id="cal" class="java.util.Calendar" factory-method="getInstance"/>
+	
+	<!-- static factory method bean instantiation giving  unrelated class object -->
+	<bean id="con" class="java.sql.DriverManager" factory-method="getConnection">
+		<constructor-arg value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<constructor-arg value="scott"/>
+		<constructor-arg value="tiger"/>
+		<!-- here <c-a> tags are supplying arg values getConnection(-,-,-) -->
+	</bean>
+	
+	<!-- instance factory bean method instantiation giving it's own class object -->
+	<bean id="s1" class="java.lang.String">
+		<constructor-arg value="Hello"/>
+		<!-- for constructor injection -->
+	</bean>
+	
+	<bean id="s2" class="java.lang.String" factory-bean="s1" factory-method="concat">
+		<constructor-arg value=" world"/>
+		<!-- for concat(-) method arg values -->
+	</bean>
+	
+	<!-- instance factory bean method instantiation giving unrelated class object -->
+	<bean id="sb1" class="java.lang.StringBuffer">
+		<constructor-arg value="I am Sourav Kumar Nayak"/>
+	</bean>
+	
+	<bean id="sb2" class="java.lang.StringBuffer" factory-bean="sb1" factory-method="substring">
+		<constructor-arg value="5"/>
+	</bean>
+	
+</beans>
