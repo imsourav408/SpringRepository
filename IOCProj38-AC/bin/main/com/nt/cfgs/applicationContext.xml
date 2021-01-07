@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd" 
+	default-lazy-init="false">
+	
+	<!-- Dependent bean configuration -->
+	<bean id="dt" class="java.util.Date" scope="prototype"/>
+	<bean id="add" class="com.nt.beans.Addition" scope="prototype"/>
+
+	<!-- target bean configuration -->
+	<bean id="wmg" class="com.nt.beans.WishMessageGenerator">
+		<property name="date" ref="dt"/>
+	</bean>
+	
+	<bean id="arth" class="com.nt.beans.Arithmatic" lazy-init="default">
+		<property name="addition" ref="add"/>
+	</bean>
+	
+	<!-- Singleton java class as prototype scope spring bean -->
+	<bean id="p1" class="com.nt.sdp.Printer" scope="prototype" factory-method="getInstance"/>
+</beans>
