@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- configure property placeholder configure -->
+	<!-- <bean id="pphc" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<array>
+				<value>com/nt/commons/info1.properties</value>
+				<value>com/nt/commons/info2.properties</value>
+			</array>
+		</property>
+	</bean> -->
+	<!-- or we can configure property placeholder like this here writing classpath: is optional-->
+	<context:property-placeholder location="classpath:com/nt/commons/info1.properties,com/nt/commons/info2.properties"/>
+	
+	<!-- configure target bean -->
+	<bean id="emp" class="com.nt.beans.Employee">
+		<property name="ename" value="${employee.name}"/>
+		<property name="job" value="${employee.job}"/>
+		<property name="sal" value="${employee.sal}"/>
+		<property name="location" value="${employee.loc}"/>
+	</bean>
+
+</beans>
