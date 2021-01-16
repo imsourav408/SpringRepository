@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd"
+	default-lazy-init="default">
+	
+	<!-- configure all dependent beans -->
+	<bean id="bdart" class="com.nt.beans.BlueDart" scope="prototype"/>
+	<bean id="dtdc" class="com.nt.beans.DTDC" scope="prototype"/>
+	<bean id="fflight" class="com.nt.beans.FirstFlight" scope="prototype"/>
+	<!-- configure all target bean class -->
+	<bean id="fkart" class="com.nt.beans.Flipkart" scope="singleton" lazy-init="default">
+		<!-- <constructor-arg name="courier" ref="dtdc"/> -->
+		<property name="courier" ref="bdart"/>
+	</bean>
+</beans>
