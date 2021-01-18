@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- configure dependent bean -->
+	<bean id="doj" class="java.util.Date" p:date="14" p:month="02" p:year="98"/>
+	<!-- configure target bean -->
+	<bean id="emp" class="com.nt.beans.Employee" c:eno="101" c:ename="Sourav" c:job="Analyst" c:doj-ref="doj"/>
+	
+</beans>
