@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- configure properties place holder configure -->
+	<!-- <bean id="pphc" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="com/nt/commons/info.properties"/>
+	</bean> -->
+	<!-- or we can configure properties file like this but here we can not read environment variable(path)-->
+	<context:property-placeholder location="com/nt/commons/info.properties"/>
+	
+	<!-- configure data source here -->
+	<bean id="ds" class="com.zaxxer.hikari.HikariDataSource">
+		<property name="jdbcUrl" value="${jdbc.url}"/>
+		<property name="driverClassName" value="${jdbc.driver}"/>
+		<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+		<property name="connectionTimeout" value="20000"/>
+		<property name="idleTimeout" value="19000"/>
+		<property name="maximumPoolSize" value="${jdbc.poolsize}"/>
+		<property name="minimumIdle" value="6"/>
+	</bean>
+
+	<!-- configure dao here -->
+	<bean id="dao" class="com.nt.dao.StudentDAOImpl">
+		<constructor-arg name="ds" ref="ds"/>
+	</bean>
+	
+	<!-- configure controller here -->
+	<bean id="controller" class="com.nt.controller.MainController">
+		<constructor-arg>
+			<!-- configure service here -->
+			<bean id="service" class="com.nt.service.StudentRegistrationServiceImpl">
+				<constructor-arg name="dao" ref="dao"/>
+				<property name="os" value="${os.name}"/>
+				<!-- <property name="path" value="${path}"/> -->
+			</bean>
+		</constructor-arg>
+	</bean>
+	<!-- configure listener class -->
+	<bean class="com.nt.listeners.IOCContainerMonitoringListener"/>
+</beans>
