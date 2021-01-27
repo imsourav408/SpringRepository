@@ -3,7 +3,7 @@ package com.nt.beans;
 public final class DHL implements Courier{
 
 	public DHL() {
-		System.out.println("DTDC.0-param constructor");
+		System.out.println("DHL.0-param constructor");
 	}
 	
 	@Override
