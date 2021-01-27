@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- configure dependent class -->
+	<bean id="dt" class="java.util.Date"/>
+	
+	<bean id="dtdc" class="com.nt.beans.DTDC">
+		<!-- <qualifier value="d1"/> -->
+	</bean>
+	<bean id="bdart" class="com.nt.beans.BlueDart">
+		<qualifier value="b1"/>
+	</bean>
+	<bean id="dhl" class="com.nt.beans.DHL" autowire-candidate="false"/>
+	<bean id="fflight" class="com.nt.beans.FirstFlight" autowire-candidate="false"/>
+	
+	<!-- by matching dependent bean id name with target bean field name -->
+	<!-- <bean id="courier" class="com.nt.beans.DHL"/> -->
+	<!-- by using primary="true" -->
+	<!-- <bean id="ff" class="com.nt.beans.FirstFlight" primary="true"/> -->
+	
+	<!-- configure target bean class -->
+	<bean id="fpkt" class="com.nt.beans.Flipkart"/>
+	
+	<!-- configure spring bean post processor -->
+	<context:annotation-config/>
+
+</beans>
