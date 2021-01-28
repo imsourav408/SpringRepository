@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- configure data source for oracle-->
+	<bean class="com.zaxxer.hikari.HikariDataSource" id="oraHkDs">
+		<property value="oracle.jdbc.driver.OracleDriver" name="driverClassName"/>
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="scott"/>
+		<property name="password" value="tiger"/>
+		<property name="minimumIdle" value="10"/>
+		<property name="maximumPoolSize" value="20"/>
+		<property name="connectionTimeout" value="2000"/>
+	</bean>
+	
+	<!-- configure data source for MySQL-->
+	<bean class="com.zaxxer.hikari.HikariDataSource" id="mysqlHkDs">
+		<property value="com.mysql.cj.jdbc.Driver" name="driverClassName"/>
+		<property value="jdbc:mysql:///sourav" name="jdbcUrl"/>
+		<property name="username" value="root"/>
+		<property name="password" value="root"/>
+		<property name="minimumIdle" value="10"/>
+		<property name="maximumPoolSize" value="20"/>
+		<property name="connectionTimeout" value="2000"/>
+	</bean>
+	
+	<context:component-scan base-package="com.nt"/>
+</beans>
